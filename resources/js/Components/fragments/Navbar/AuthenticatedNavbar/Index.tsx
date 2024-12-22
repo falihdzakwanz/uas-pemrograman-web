@@ -6,9 +6,9 @@ export default function AuthenticatedNavbar() {
     const [showDropdown, setShowDropdown] = useState(false);
 
     return (
-        <nav className="flex items-center justify-between bg-white px-4 py-3 shadow">
+        <nav className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-3 shadow">
             <div>
-                <Link href="/tasks" className="text-lg font-bold text-gray-800">
+                <Link href="/tasks" className="text-lg font-bold text-white">
                     Task Master
                 </Link>
             </div>
@@ -16,7 +16,7 @@ export default function AuthenticatedNavbar() {
             <div className="relative">
                 <button
                     onClick={() => setShowDropdown((prev) => !prev)}
-                    className="flex items-center space-x-2 rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="hover: flex items-center space-x-2 rounded-md px-4 py-2 text-sm text-white transition-all duration-200 hover:bg-gray-100 hover:text-gray-700"
                 >
                     <span>{user.name}</span>
                     <svg

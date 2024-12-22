@@ -10,6 +10,8 @@ type TaskModalProps = {
     onDelete: () => void;
 };
 
+type StatusType = 'not_started' | 'in_progress' | 'completed';
+
 const TaskModal: React.FC<TaskModalProps> = ({
     isOpen,
     type,
@@ -23,9 +25,14 @@ const TaskModal: React.FC<TaskModalProps> = ({
     if (!isOpen) return null;
 
     const validateForm = (form: HTMLFormElement): boolean => {
-        const title = form.title.value.trim();
-        const description = form.description.value.trim();
-        const status = form.status.value;
+        const title = (
+            form.elements.namedItem('title') as HTMLInputElement
+        ).value.trim();
+        const description = (
+            form.elements.namedItem('description') as HTMLTextAreaElement
+        ).value.trim();
+        const status = (form.elements.namedItem('status') as HTMLSelectElement)
+            .value as StatusType;
 
         const newErrors: { [key: string]: string } = {};
 
@@ -62,10 +69,27 @@ const TaskModal: React.FC<TaskModalProps> = ({
                             const form = e.target as HTMLFormElement;
                             if (validateForm(form)) {
                                 const data = {
-                                    title: form.title.value.trim(),
-                                    description: form.description.value.trim(),
-                                    status: form.status.value,
-                                    deadline: form.deadline.value || null,
+                                    title: (
+                                        form.elements.namedItem(
+                                            'title',
+                                        ) as HTMLInputElement
+                                    ).value.trim(),
+                                    description: (
+                                        form.elements.namedItem(
+                                            'description',
+                                        ) as HTMLTextAreaElement
+                                    ).value.trim(),
+                                    status: (
+                                        form.elements.namedItem(
+                                            'status',
+                                        ) as HTMLSelectElement
+                                    ).value as StatusType,
+                                    deadline:
+                                        (
+                                            form.elements.namedItem(
+                                                'deadline',
+                                            ) as HTMLInputElement
+                                        ).value || undefined,
                                 };
                                 onSubmit(data);
                             }
