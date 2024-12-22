@@ -87,8 +87,10 @@ Proyek ini adalah aplikasi **Manajemen Tugas** berbasis web yang memanfaatkan te
   ```
   $task->delete();
 
+---
+
 ## Bagian 4: State Management
-### 4.1 State Management dengan Session (10%)
+### 4.1 State Management dengan Session
 - **Laravel Session** digunakan untuk menyimpan data filter status tugas:
   - Pada saat filter diubah, data `statusFilter` disimpan ke session di server.
   - **Implementasi Client-side**:
@@ -99,7 +101,7 @@ Proyek ini adalah aplikasi **Manajemen Tugas** berbasis web yang memanfaatkan te
   ```
   session(['user_id' => Auth::id()]);
 
-### 4.2 Pengelolaan State dengan Cookie dan Browser Storage (10%)
+### 4.2 Pengelolaan State dengan Cookie dan Browser Storage
 - **Browser Storage (Local Storage)** digunakan untuk menyimpan data tugas (tasks) pada browser.
   - Ketika data tugas ditampilkan di halaman, data tersebut disimpan dalam **localStorage** pada browser, yang memungkinkan pengguna untuk mengakses data tanpa harus memuat ulang halaman atau meminta data ke server.
 
@@ -109,6 +111,8 @@ Proyek ini adalah aplikasi **Manajemen Tugas** berbasis web yang memanfaatkan te
   ```javascript
   setTaskList(JSON.parse(storedTasks));
   const storedTasks = localStorage.getItem(`tasks-${userId}`);
+
+---
 
 ### Bagian Bonus: Hosting Aplikasi Web
 
